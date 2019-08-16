@@ -1,4 +1,7 @@
 #!/bin/bash
+
+echo "formatting HTML source..."
+
 #insert linebreak before each entry
 gsed -i 's/<idx:entry scriptable/\n&/g' $1 &&
 
@@ -6,8 +9,9 @@ gsed -i 's/<idx:entry scriptable/\n&/g' $1 &&
 gsed -i 's/<span>//g' $1 &&
 gsed -i 's/<\/span>//g' $1 &&
 
-#remove <hr/> </mbp:frameset> <mbp:pagebreak/> </body> </html> tags
+#remove <hr/> <mbp:frameset> </mbp:frameset> <mbp:pagebreak/> </body> </html> tags
 gsed -i 's/<hr\/>//g' $1 &&
+gsed -i 's/<mbp:frameset>//g' $1 &&
 gsed -i 's/<\/mbp:frameset>//g' $1 &&
 gsed -i 's/<mbp:pagebreak\/>//g' $1 &&
 gsed -i 's/<\/body>//g' $1 &&
@@ -31,17 +35,12 @@ gsed -i 's/<\/idx:orth>//g' $1 &&
 
 #delete first two lines (copyright pages)
 gsed -i '1,2d' $1 &&
+echo "preprocess done."
 
+echo "generating hyper-reference and inflection entries..."
 #replace hyperlink and remove <a id> tags
-#replace.sh file generated might be too large to run
-./hyperlink.swift $1 > replace.sh && bash ./replace.sh && rm -f replace.sh &&
-
 #create individual entry for inflection
-./infl.pl $1 > infl.txt &&
+#move inflections to next line after main entry
+./hyperlink.pl $1 
 
-#move inflection to next line after main entry
-perl -pi -e 's/<idx:infl>(.*)<\/idx:infl>(.*?)<\/div>/\2<\/div><div>\1<\/div>/' $1 &&
-perl -pi -e 's/<idx:iform name="" value="(.*?)"\/>/\1 /g' $1 &&
-
-#create individual entry for inflection
-cat infl.txt >> $1 && rm -f infl.txt
+echo "All done."
