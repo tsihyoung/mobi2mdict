@@ -5,7 +5,6 @@ These scripts can convert *SOME* MOBI dictionaries to Octopus MDict source witho
 
 Dependencies:
 
-* Swift 5
 * Perl 5
 * gnu-sed if you are working on MacOS
 
