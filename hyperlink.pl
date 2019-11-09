@@ -29,7 +29,7 @@ for $line (@dict) {
         print "processing: $prev";
         $prev =~ s/\n//;
         foreach ($line =~ /<idx:iform name="" value="(.*?)"\/>/g) {
-            if (substr($_, 0, 1) =~ /[^\-(]/) {
+            if (substr($_, 0, 1) =~ /[^\-(]/ && $_ ne $prev) {
                 push @inflections, "$_\n<div>la flexion de <b><a href=\"entry://$prev\">$prev</b></div>\n</>\n";
             }
         }
