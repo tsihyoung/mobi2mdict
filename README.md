@@ -1,9 +1,9 @@
 # mobi2mdict
 MOBI dictionary to MDict convertor
 
-These scripts can convert *SOME* MOBI dictionaries to Octopus MDict source without any guarantee.
+This script can convert *SOME* MOBI dictionaries to Octopus MDict source without any guarantee.
 
-Dependencies:
+Dependency:
 
 * Perl 5
 
@@ -11,3 +11,8 @@ How to:
 
 1. Unpack MOBI file to html.
 2. Simply run `./mobi2mdict.pl file_got_in_step_1.html`
+
+Outputs:
+
+1. Converted MDict source file.
+2. Copyright information `copyright.txt`.
