@@ -16,3 +16,7 @@ Outputs:
 
 1. Converted MDict source file.
 2. Copyright information `copyright.txt`.
+
+N.B.
+
+Please check whether your `file_got_in_step_1.html` is encoded in UTF-8. If not so, convert it using `iconv` or `vim` before running `mobi2mdict.pl`.

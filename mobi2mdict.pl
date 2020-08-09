@@ -74,4 +74,4 @@ open(FILE,"+>",$ARGV[0]) or die "File failed to open: $!";
 print FILE @dict, @inflections;
 close FILE;
 
-print "All done";
+print "All done\n";
